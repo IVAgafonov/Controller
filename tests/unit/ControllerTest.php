@@ -30,8 +30,7 @@ class ControllerTest extends \Codeception\Test\Unit
     {
         $controller = new \IVAgafonov\Controller\IndexController();
 
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('{"error":{"code":403,"text":"Controller: Forbidden"}}');
+        $this->expectOutputString('{"status":"ok"}');
         $controller->index();
     }
 
