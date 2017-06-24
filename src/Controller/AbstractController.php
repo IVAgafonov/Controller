@@ -18,8 +18,7 @@ abstract class AbstractController
      */
     public function index()
     {
-        header("HTTP/1.1 403 Forbidden");
-        throw new \Exception(json_encode(['error' => ['code' => 403, 'text' => 'Controller: Forbidden']]));
+        echo json_encode(['status' => 'ok']);
     }
 
     public function setMethod($method)
