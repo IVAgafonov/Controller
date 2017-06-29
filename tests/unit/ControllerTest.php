@@ -24,6 +24,9 @@ class ControllerTest extends \Codeception\Test\Unit
     {
         $controller = new \IVAgafonov\Controller\IndexController();
         $this->assertInstanceOf('\IVAgafonov\Controller\ControllerInterface', $controller);
+
+        $controllerV1 = new \IVAgafonov\Controller\v1\IndexController();
+        $this->assertInstanceOf('\IVAgafonov\Controller\ControllerInterface', $controllerV1);
     }
 
     public function testControllerIndexAction()
@@ -32,6 +35,11 @@ class ControllerTest extends \Codeception\Test\Unit
 
         $this->expectOutputString('{"status":"ok"}');
         $controller->index();
+
+        $controllerV1 = new \IVAgafonov\Controller\v1\IndexController();
+
+        $this->expectOutputString('{"status":"ok"}{"status":"ok"}');
+        $controllerV1->index();
     }
 
     public function testControllerSettersAndGetters()
@@ -51,5 +59,21 @@ class ControllerTest extends \Codeception\Test\Unit
 
         $controller->setDataProviders(['default' => $request]);
         $this->assertEquals(['default' => $request], $controller->getDataProviders());
+
+        $controllerV1 = new \IVAgafonov\Controller\v1\IndexController();
+
+        $controllerV1->setMethod('GET');
+        $this->assertEquals('GET', $controllerV1->getMethod());
+
+        $controllerV1->setParams(['name' => 'value']);
+        $this->assertEquals(['name' => 'value'], $controllerV1->getParams());
+
+        $request = new \stdClass();
+
+        $controllerV1->setRequest($request);
+        $this->assertEquals($request, $controllerV1->getRequest());
+
+        $controllerV1->setDataProviders(['default' => $request]);
+        $this->assertEquals(['default' => $request], $controllerV1->getDataProviders());
     }
 }
