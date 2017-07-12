@@ -22,9 +22,6 @@ class ControllerFactoryTest extends \Codeception\Test\Unit
     // tests
     public function testControllerFactoryInit()
     {
-        $controllerFactory = new \IVAgafonov\Controller\Factory\IndexControllerFactory();
-        $this->assertInstanceOf('\IVAgafonov\Controller\Factory\ControllerFactoryInterface', $controllerFactory);
-
         $controllerFactoryV1 = new \IVAgafonov\Controller\v1\Factory\IndexControllerFactory();
         $this->assertInstanceOf('\IVAgafonov\Controller\Factory\ControllerFactoryInterface', $controllerFactoryV1);
     }
@@ -32,12 +29,6 @@ class ControllerFactoryTest extends \Codeception\Test\Unit
     public function testControllerFactoryCreateController()
     {
         $config = [];
-
-        $controllerFactory = new \IVAgafonov\Controller\Factory\IndexControllerFactory();
-        $this->assertInstanceOf('\IVAgafonov\Controller\Factory\ControllerFactoryInterface', $controllerFactory);
-
-        $controller = $controllerFactory->create($config);
-        $this->assertInstanceOf('\IVAgafonov\Controller\ControllerInterface', $controller);
 
         $controllerFactoryV1 = new \IVAgafonov\Controller\v1\Factory\IndexControllerFactory();
         $this->assertInstanceOf('\IVAgafonov\Controller\Factory\ControllerFactoryInterface', $controllerFactoryV1);

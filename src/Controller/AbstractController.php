@@ -14,6 +14,15 @@ abstract class AbstractController
     protected $request;
 
     /**
+     * AbstractController constructor.
+     * @param string $contentType
+     */
+    public function __construct($contentType = "Content-Type: application/json; charset=utf-8")
+    {
+        header($contentType);
+    }
+
+    /**
      * Default action
      */
     public function index()
